@@ -12,12 +12,10 @@ warnings.filterwarnings('ignore')
 plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
-# ИСПРАВЬ ИМЕНА ФАЙЛОВ НА ТОЧНЫЕ!!!
-summary = pd.read_csv('csvs/Measurement_summary.csv')  # или Measurement summary.csv
+summary = pd.read_csv('csvs/Measurement_summary.csv')
 stations = pd.read_csv('csvs/Measurement_station_info.csv')
 items = pd.read_csv('csvs/Measurement_item_info.csv')
 
-# Преобразование даты
 summary['Measurement date'] = pd.to_datetime(summary['Measurement date'])
 summary['date'] = summary['Measurement date'].dt.date
 summary['hour'] = summary['Measurement date'].dt.hour
@@ -30,7 +28,6 @@ print("Данные загружены успешно!")
 print(f"Размер summary: {summary.shape}")
 print("Колонки:", summary.columns.tolist())
 
-# ===============================================
 # 1. Будни vs Выходные (берем PM2.5 как основной показатель)
 print("\n1. Загрязненность в будни и выходные (по PM2.5)")
 
@@ -60,7 +57,6 @@ plt.tight_layout()
 plt.savefig('analysis_1_weekday_weekend.png', dpi=300)
 print("График 1 сохранён")
 
-# ===============================================
 # 2. Прогнозирование (на примере PM2.5)
 print("\n2. Прогноз PM2.5 по времени")
 
@@ -104,9 +100,7 @@ plt.tight_layout()
 plt.savefig('analysis_2_prediction.png', dpi=300)
 print("График 2 сохранён")
 
-# ===============================================
 # 3. КОРРЕЛЯЦИОННЫЙ АНАЛИЗ: SO2 и NO2
-
 print("\n" + "=" * 50)
 print("АНАЛИЗ 3: Корреляция между SO2 и NO2")
 print("=" * 50)
